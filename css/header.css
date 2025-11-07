@@ -1,0 +1,124 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, #101828 0%, #0F615F 46%, #B8343A 100%);
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  box-shadow: 0 16px 50px rgba(0,0,0,.12);
+}
+
+.header-inner {
+  min-height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* простой мягкий красный кружок */
+.logo-mark {
+  width: 62px;
+  height: 62px;
+  border-radius: 999px;
+  background: #ff6b6b;                      /* мягкий красный */
+  box-shadow: 0 12px 28px rgba(255, 107, 107, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.05;
+}
+.logo-text small {
+  font-size: .78rem;
+  color: rgba(255,255,255,.65);
+  font-weight: 600;
+}
+
+.nav {
+  display: flex;
+  gap: 1.9rem;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: rgba(255,255,255,.82);
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: .1s ease;
+}
+
+.nav a.active,
+.nav a:hover {
+  color: #fff;
+}
+
+/* КНОПКА */
+.header-btn {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255,255,255,0.95);       /* не чисто белый, а чуть молочный */
+  color: #0F615F !important;
+  padding: 1.05rem 2.35rem;                 /* больше */
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.05rem;                       /* больше текст */
+  box-shadow: 0 14px 28px rgba(0,0,0,.15);
+  border: 1.5px solid rgba(255,255,255,0.28);
+  backdrop-filter: blur(4px);
+  gap: .4rem;
+}
+
+.header-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 16px 32px rgba(0,0,0,.18);
+}
+
+/* бургер */
+.burger {
+  display: none;
+  background: transparent;
+  border: none;
+}
+
+@media (max-width: 980px) {
+  .nav {
+    display: none;
+    position: absolute;
+    top: 118px;
+    right: 1rem;
+    background: rgba(16,24,40,.98);
+    border-radius: 18px;
+    flex-direction: column;
+    min-width: 230px;
+    overflow: hidden;
+  }
+  .nav.show { display: flex; }
+  .nav a,
+  .nav .header-btn {
+    width: 100%;
+    padding: 1rem 1.1rem;
+    justify-content: flex-start;
+  }
+  .burger {
+    display: block;
+    width: 30px;
+    height: 24px;
+  }
+  .header-inner {
+    min-height: 100px;
+  }
+}

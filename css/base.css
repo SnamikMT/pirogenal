@@ -1,0 +1,67 @@
+:root {
+  --page-bg: #ffffff;
+  --surface: #ffffff;
+  --text: #3a3b40;
+  --muted: rgba(58, 59, 64, 0.6);
+  --accent: #00b3a8;
+  --radius: 22px;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img { max-width: 100%; display: block; }
+
+.container {
+  width: min(1240px, 100% - 1.6rem);
+  margin: 0 auto;
+}
+
+/* базовые кнопки — С ФОНОМ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-weight: 700;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .12s ease;
+  gap: .4rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: var(--text);
+  border: 1.4px solid rgba(0,0,0,.06);
+}
+
+.section {
+  padding: 3rem 0;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1.4rem;
+}

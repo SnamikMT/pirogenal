@@ -1,0 +1,92 @@
+.forms {
+  background: #f0f0f0;      /* чуть темнее чем #f5f5f5 на скрине, можно вернуть */
+  padding: 2.5rem 0 2.9rem;
+}
+
+.forms__head {
+  margin-bottom: 1.3rem;
+}
+
+.forms__note {
+  margin: 0 0 .35rem;
+  color: #b8343a;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.forms__title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #3a3b40;
+}
+
+.forms__list {
+  margin-top: 1.3rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: .9rem .65rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  color: #3a3b40;
+  transition: .08s ease;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.02);
+}
+
+.form-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(0,0,0,0.03);
+}
+
+.form-card__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  margin-bottom: .7rem;
+}
+
+.form-card__img img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+
+.form-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.form-card__desc {
+  font-size: .78rem;
+  color: rgba(58, 59, 64, 0.65);
+}
+
+/* адаптив */
+@media (max-width: 1180px) {
+  .forms__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .forms__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .forms {
+    padding-bottom: 2.4rem;
+  }
+}
+@media (max-width: 460px) {
+  .forms__list {
+    grid-template-columns: 1fr;
+  }
+}

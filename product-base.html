@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пирогенал — инъекции 10 мкг</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- общие -->
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <link rel="stylesheet" href="./css/buy.css">
+  <!-- стили продукта -->
+  <link rel="stylesheet" href="./css/product-page.css">
+  <script defer src="./main.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"></span>
+      <span class="logo-text">
+        Пирогенал
+        <small>Препарат контроля воспаления</small>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Главная</a>
+      <a href="product-10.html" class="active">Продукт</a>
+      <a href="index.html#faq">Вопрос-ответ</a>
+      <a href="index.html#buy" class="header-btn">Где купить</a>
+    </nav>
+    <button class="burger" aria-label="Открыть меню"></button>
+  </div>
+</header>
+
+<main>
+  <!-- hero товара -->
+  <section class="p-product-hero">
+    <div class="container p-product-hero__inner">
+      <div class="p-product-hero__left">
+        <p class="p-product-hero__badge">Форма выпуска</p>
+        <h1 class="p-product-hero__title">Пирогенал, инъекции 10 мкг</h1>
+        <p class="p-product-hero__lead">
+          Препарат контроля воспаления и восстановления тканей. Используется в составе комплексной терапии при хронических процессах.
+        </p>
+        <ul class="p-product-hero__list">
+          <li>усиливает эффект химио- и антибактериальных препаратов;</li>
+          <li>улучшает микроциркуляцию в зоне воспаления;</li>
+          <li>снижает риск избыточного рубцевания и спаек.</li>
+        </ul>
+        <div class="p-product-hero__actions">
+          <a href="#scheme" class="btn btn-primary p-product-hero__btn">Схема применения</a>
+          <a href="#buy" class="btn btn-ghost p-product-hero__btn">Где купить</a>
+        </div>
+      </div>
+      <div class="p-product-hero__right">
+        <div class="p-product-hero__visual">
+          <!-- твоя картинка формы -->
+          <img src="img/preparat.png" alt="Пирогенал 10 мкг" class="p-product-hero__img">
+        </div>
+        <div class="p-product-hero__dose-pill">10 мкг</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- механизм один для всех -->
+  <section class="p-mech" id="mechanism">
+    <div class="container">
+      <h2 class="p-section-title">Как действует</h2>
+      <p class="p-mech__text">
+        Липополисахарид связывается с клетками, имеющими Толл-рецепторы, и запускает контролируемый воспалительно-репаративный ответ низкой силы.
+      </p>
+      <div class="p-mech__grid">
+        <div class="p-mech-card">
+          <p class="p-mech-card__title">Улучшает микроциркуляцию</p>
+          <p class="p-mech-card__text">в зоне хронического процесса</p>
+        </div>
+        <div class="p-mech-card">
+          <p class="p-mech-card__title">Ускоряет репарацию</p>
+          <p class="p-mech-card__text">нормальное заживление тканей</p>
+        </div>
+        <div class="p-mech-card">
+          <p class="p-mech-card__title">Снижает спайки</p>
+          <p class="p-mech-card__text">меньше избыточного рубцевания</p>
+        </div>
+        <div class="p-mech-card">
+          <p class="p-mech-card__title">Повышает доступность</p>
+          <p class="p-mech-card__text">других препаратов в очаге</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- схема конкретно для инъекций -->
+  <section class="p-scheme" id="scheme">
+    <div class="container">
+      <h2 class="p-section-title">Схема применения</h2>
+      <div class="p-scheme__card">
+        <h3>Инъекции 10 мкг</h3>
+        <p>
+          Начальная разовая доза для взрослых — 2,5 мкг. В последующие дни дозу увеличивают на 2,5–5,0 мкг.
+          Максимальная разовая доза — 100 мкг.
+        </p>
+        <p>
+          Курс лечения — от 10 до 30 инъекций в зависимости от заболевания. При пиротерапии вводят 1 раз в сутки,
+          начиная с 5–10 мкг, с постепенным повышением дозы до 100–150 мкг, инъекции проводят через 1–2 дня.
+        </p>
+      </div>
+      <div class="p-scheme__note">
+        Вариант схемы определяет специалист в зависимости от показаний.
+      </div>
+    </div>
+  </section>
+
+  <div id="buy-block"></div>
+</main>
+
+<div id="footer-block"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => nav.classList.toggle('show'));
+    }
+  });
+</script>
+</body>
+</html>

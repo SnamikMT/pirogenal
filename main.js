@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.addEventListener('click', () => nav.classList.toggle('show'));
   }
 
-  const mainEl = document.querySelector('main');
-
-  // hero
+  // ===== HERO (только если есть #hero-block) =====
   const heroContainer = document.getElementById('hero-block');
   if (heroContainer) {
     fetch('blocks/hero.html')
@@ -17,27 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.warn('Не удалось загрузить hero:', err));
   }
 
-  // articles
-  if (mainEl) {
-    const artContainer = document.createElement('div');
-    artContainer.id = 'articles-block';
-    mainEl.appendChild(artContainer);
-
+  // ===== ARTICLES =====
+  const articlesContainer = document.getElementById('articles-block');
+  if (articlesContainer) {
     fetch('blocks/articles.html')
       .then(r => r.text())
       .then(html => {
-        artContainer.innerHTML = html;
+        articlesContainer.innerHTML = html;
         initArticles();
       })
       .catch(err => console.warn('Не удалось загрузить articles:', err));
   }
 
-  // about (новый блок)
-  if (mainEl) {
-    const aboutContainer = document.createElement('div');
-    aboutContainer.id = 'about-block';
-    mainEl.appendChild(aboutContainer);
-
+  // ===== ABOUT =====
+  const aboutContainer = document.getElementById('about-block');
+  if (aboutContainer) {
     fetch('blocks/about.html')
       .then(r => r.text())
       .then(html => {
@@ -46,12 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.warn('Не удалось загрузить about:', err));
   }
 
-  // forms (формы выпуска)
-  if (mainEl) {
-    const formsContainer = document.createElement('div');
-    formsContainer.id = 'forms-block';
-    mainEl.appendChild(formsContainer);
-
+  // ===== FORMS =====
+  const formsContainer = document.getElementById('forms-block');
+  if (formsContainer) {
     fetch('blocks/forms.html')
       .then(r => r.text())
       .then(html => {
@@ -60,13 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.warn('Не удалось загрузить forms:', err));
   }
 
-
-  // faq
-  if (mainEl) {
-    const faqContainer = document.createElement('div');
-    faqContainer.id = 'faq-block';
-    mainEl.appendChild(faqContainer);
-
+  // ===== FAQ =====
+  const faqContainer = document.getElementById('faq-block');
+  if (faqContainer) {
     fetch('blocks/faq.html')
       .then(r => r.text())
       .then(html => {
@@ -76,21 +61,30 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => console.warn('Не удалось загрузить faq:', err));
   }
 
-  // buy
-if (mainEl) {
-  const buyContainer = document.createElement('div');
-  buyContainer.id = 'buy-block';
-  mainEl.appendChild(buyContainer);
+  // ===== BUY =====
+  const buyContainer = document.getElementById('buy-block');
+  if (buyContainer) {
+    fetch('blocks/buy.html')
+      .then(r => r.text())
+      .then(html => {
+        buyContainer.innerHTML = html;
+      })
+      .catch(err => console.warn('Не удалось загрузить buy:', err));
+  }
 
-  fetch('blocks/buy.html')
-    .then(r => r.text())
-    .then(html => {
-      buyContainer.innerHTML = html;
-    })
-    .catch(err => console.warn('Не удалось загрузить buy:', err));
-}
+  // ===== FOOTER =====
+  const footerContainer = document.getElementById('footer-block');
+  if (footerContainer) {
+    fetch('blocks/footer.html')
+      .then(r => r.text())
+      .then(html => {
+        footerContainer.innerHTML = html;
+      })
+      .catch(err => console.warn('Не удалось загрузить footer:', err));
+  }
 
-  // функции
+  // ====== функции ======
+
   function initArticles() {
     const block = document.getElementById('articles-block');
     if (!block) return;
@@ -115,19 +109,21 @@ if (mainEl) {
     const faqBlock = document.getElementById('faq-block');
     if (!faqBlock) return;
 
+    // tabs
     faqBlock.addEventListener('click', (e) => {
       const tab = e.target.closest('.faq-tab');
-      if (tab) {
-        const group = tab.dataset.faqGroup;
-        faqBlock.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('faq-tab--active'));
-        tab.classList.add('faq-tab--active');
+      if (!tab) return;
+      const group = tab.dataset.faqGroup;
 
-        faqBlock.querySelectorAll('.faq-group').forEach(g => {
-          g.classList.toggle('faq-group--active', g.dataset.faq === group);
-        });
-      }
+      faqBlock.querySelectorAll('.faq-tab').forEach(t => t.classList.remove('faq-tab--active'));
+      tab.classList.add('faq-tab--active');
+
+      faqBlock.querySelectorAll('.faq-group').forEach(g => {
+        g.classList.toggle('faq-group--active', g.dataset.faq === group);
+      });
     });
 
+    // accordions
     faqBlock.addEventListener('click', (e) => {
       const btn = e.target.closest('.faq-item__btn');
       if (!btn) return;

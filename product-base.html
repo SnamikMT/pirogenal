@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Пирогенал — инъекции 10 мкг</title>
+  <title>Пирогенал — инъекции</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Montserrat -->
@@ -21,117 +21,152 @@
 </head>
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a href="index.html" class="logo">
-      <span class="logo-mark"></span>
-      <span class="logo-text">
-        Пирогенал
-        <small>Препарат контроля воспаления</small>
-      </span>
-    </a>
-    <nav class="nav">
-      <a href="index.html">Главная</a>
-      <a href="product-10.html" class="active">Продукт</a>
-      <a href="index.html#faq">Вопрос-ответ</a>
-      <a href="index.html#buy" class="header-btn">Где купить</a>
-    </nav>
-    <button class="burger" aria-label="Открыть меню"></button>
-  </div>
-</header>
+<div id="header-block"></div>
 
 <main>
-  <!-- hero товара -->
+  <!-- hero товара: общая страница для всех литровок инъекций -->
   <section class="p-product-hero">
     <div class="container p-product-hero__inner">
       <div class="p-product-hero__left">
+
+        <!-- переключатель форм выпуска -->
+        <div class="p-product-switch">
+          <a href="/product-inj.html" class="p-product-switch__link p-product-switch__link--active">
+            Инъекции
+          </a>
+          <a href="/product-supp.html" class="p-product-switch__link">
+            Свечи
+          </a>
+        </div>
+
         <p class="p-product-hero__badge">Форма выпуска</p>
-        <h1 class="p-product-hero__title">Пирогенал, инъекции 10 мкг</h1>
+        <h1 class="p-product-hero__title">Пирогенал, инъекции</h1>
         <p class="p-product-hero__lead">
-          Препарат контроля воспаления и восстановления тканей. Используется в составе комплексной терапии при хронических процессах.
+          Препарат контроля воспаления и восстановления тканей. Используется в составе комплексной терапии при хронических и поствоспалительных процессах.
         </p>
         <ul class="p-product-hero__list">
-          <li>усиливает эффект химио- и антибактериальных препаратов;</li>
-          <li>улучшает микроциркуляцию в зоне воспаления;</li>
-          <li>снижает риск избыточного рубцевания и спаек.</li>
+          <li>участвует в регуляции воспалительно-репаративной фазы;</li>
+          <li>улучшает микроциркуляцию и трофику тканей;</li>
+          <li>способствует снижению риска избыточного рубцевания и спаек.</li>
         </ul>
         <div class="p-product-hero__actions">
-          <a href="#scheme" class="btn btn-primary p-product-hero__btn">Схема применения</a>
-          <a href="#buy" class="btn btn-ghost p-product-hero__btn">Где купить</a>
+          <a href="#about-full" class="btn btn-primary p-product-hero__btn">Подробнее о препарате</a>
+          <a href="#buy-block" class="btn btn-ghost p-product-hero__btn">Где купить</a>
         </div>
       </div>
+
       <div class="p-product-hero__right">
         <div class="p-product-hero__visual">
-          <!-- твоя картинка формы -->
-          <img src="img/preparat.png" alt="Пирогенал 10 мкг" class="p-product-hero__img">
+          <!-- только инъекции, без “10 мкг” -->
+          <img src="img/preparat.png" alt="Пирогенал, раствор для внутримышечного введения" class="p-product-hero__img">
         </div>
-        <div class="p-product-hero__dose-pill">10 мкг</div>
+        <!-- плашку 10 мкг убираем, страница для всех литровок -->
+        <!-- <div class="p-product-hero__dose-pill">10 мкг</div> -->
       </div>
     </div>
   </section>
 
-  <!-- механизм один для всех -->
-  <section class="p-mech" id="mechanism">
+  <!-- основной блок “О препарате” — максимально дословно по ТЗ -->
+  <section class="p-scheme" id="about-full">
     <div class="container">
-      <h2 class="p-section-title">Как действует</h2>
-      <p class="p-mech__text">
-        Липополисахарид связывается с клетками, имеющими Толл-рецепторы, и запускает контролируемый воспалительно-репаративный ответ низкой силы.
-      </p>
-      <div class="p-mech__grid">
-        <div class="p-mech-card">
-          <p class="p-mech-card__title">Улучшает микроциркуляцию</p>
-          <p class="p-mech-card__text">в зоне хронического процесса</p>
-        </div>
-        <div class="p-mech-card">
-          <p class="p-mech-card__title">Ускоряет репарацию</p>
-          <p class="p-mech-card__text">нормальное заживление тканей</p>
-        </div>
-        <div class="p-mech-card">
-          <p class="p-mech-card__title">Снижает спайки</p>
-          <p class="p-mech-card__text">меньше избыточного рубцевания</p>
-        </div>
-        <div class="p-mech-card">
-          <p class="p-mech-card__title">Повышает доступность</p>
-          <p class="p-mech-card__text">других препаратов в очаге</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- схема конкретно для инъекций -->
-  <section class="p-scheme" id="scheme">
-    <div class="container">
-      <h2 class="p-section-title">Схема применения</h2>
       <div class="p-scheme__card">
-        <h3>Инъекции 10 мкг</h3>
+        <h2 class="p-section-title">О препарате</h2>
+
+        <h3>Преимущества Пирогенал</h3>
+        <ul>
+          <li>Широкий спектр действия</li>
+          <li>Противовоспалительное действие</li>
+          <li>Восстановительное действие</li>
+          <li>Снижение риска образования рубцов и спаек</li>
+          <li>Удобная форма и режим применения</li>
+          <li>Хорошая переносимость</li>
+          <li>Совместимость с другими препаратами</li>
+          <li>Отсутствие влияния на психомоторные функции</li>
+        </ul>
+
+        <h3>Механизм действия</h3>
         <p>
-          Начальная разовая доза для взрослых — 2,5 мкг. В последующие дни дозу увеличивают на 2,5–5,0 мкг.
-          Максимальная разовая доза — 100 мкг.
+          В основе действия Пирогенала — реакция клеток на бактериальный Липополисахарид (ЛПС)*.
+          У многих клеток (макрофаги, эндотелий, фибробласты) есть Толл-рецепторы, которые распознают ЛПС и запускают
+          сигнальный каскад врождённой защиты. В Пирогенале используется обезвреженный ЛПС — без целой бактерии,
+          поэтому он не вызывает инфекцию, но сохраняет способность запускать нужные реакции.
         </p>
+        <p>После связывания с Толл-рецепторами происходит:</p>
+        <ul>
+          <li>контролируемая активация воспалительного ответа низкой интенсивности;</li>
+          <li>регуляция (а не разгон) воспаления — переход от затянувшегося процесса к фазе восстановления;</li>
+          <li>стимуляция репарации тканей за счёт улучшения микроциркуляции и медиаторов заживления;</li>
+          <li>торможение избыточного фиброзирования, соответственно, уменьшается риск образования грубых рубцов и спаек.</li>
+        </ul>
         <p>
-          Курс лечения — от 10 до 30 инъекций в зависимости от заболевания. При пиротерапии вводят 1 раз в сутки,
-          начиная с 5–10 мкг, с постепенным повышением дозы до 100–150 мкг, инъекции проводят через 1–2 дня.
+          Таким образом, Пирогенал используется не модулятор воспалительно-регенераторной фазы при хронических
+          и поствоспалительных состояниях.
         </p>
-      </div>
-      <div class="p-scheme__note">
-        Вариант схемы определяет специалист в зависимости от показаний.
+
+        <h3>Безопасность применения</h3>
+        <p>
+          В составе Пирогенала содержится только Липополисахарид, без живых бактерий, что исключает риск заражения.
+        </p>
+
+        <h3>Показания к применению препарат Пирогенал</h3>
+        <p>
+          50, 100, 150, 200 мкг&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 мкг/мл №10<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25 мкг/мл №10<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;50 мкг/мл №10<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100 мкг/мл №10
+        </p>
+        <p class="p-scheme__note">
+          *инструкция по медицинскому применению лекарственного препарата Пирогенал суппозитории<br>
+          *инструкция по медицинскому применению лекарственного препарата Пирогенал р-р для инъекций
+        </p>
+
+        <h3>Формы выпуска</h3>
+        <p>
+          Суппозитории 12 суппозиториев (комплект) — по 3 суппозитория разной концентрации (50, 100, 150 и 200 мкг)
+        </p>
+        <p>Фото упаковки</p>
+
+        <p>
+          Пирогенал, 10 мкг/мл, раствор для внутримышечного введения<br>
+          Пирогенал, 25 мкг/мл, раствор для внутримышечного введения<br>
+          Пирогенал, 50 мкг/мл, раствор для внутримышечного введения<br>
+          Пирогенал, 100 мкг/мл, раствор для внутримышечного введения
+        </p>
+        <p>Фото упаковки</p>
+
+        <h3>Где купить</h3>
+        <p>Препарат Пирогенал можно приобрести в следующих онлайн-аптеках:</p>
+        <ul>
+          <li><a href="https://uteka.ru/lekarstvennye-sredstva/immunitet/pirogenal/" target="_blank" rel="noopener noreferrer">uteka.ru</a></li>
+          <li><a href="https://www.eapteka.ru/goods/drugs/immunology/immunostimulant/pirogenal_nii_em_im_gamalei/" target="_blank" rel="noopener noreferrer">eapteka.ru</a></li>
+          <li><a href="https://www.asna.ru/search/?query=%D0%BF%D0%B8%D1%80%D0%BE%D0%B3%D0%B5%D0%BD%D0%B0%D0%BB" target="_blank" rel="noopener noreferrer">asna.ru</a></li>
+          <li><a href="https://zdravcity.ru/g_pirogenal/" target="_blank" rel="noopener noreferrer">zdravcity.ru</a></li>
+          <li><a href="https://planetazdorovo.ru/search/?q=%D0%BF%D0%B8%D1%80%D0%BE%D0%B3%D0%B5%D0%BD%D0%B0%D0%BB" target="_blank" rel="noopener noreferrer">planetazdorovo.ru</a></li>
+          <li><a href="https://www.rigla.ru/forms/pirogenal?srsltid=AfmBOoq0OEh_mv3yGYXGDqgekIqbkLeGO9lf0Kdob3zUXzrcL5qHWf-u" target="_blank" rel="noopener noreferrer">rigla.ru</a></li>
+          <li><a href="https://www.wildberries.ru/catalog/tags/pirogenal" target="_blank" rel="noopener noreferrer">wildberries.ru</a></li>
+        </ul>
+
+        <h3>Список литературы</h3>
+        <ol>
+          <li>ОБЩАЯ ХАРАКТЕРИСТИКА ЛЕКАРСТВЕННОГО ПРЕПАРАТА Пирогенал суппозитории</li>
+          <li>ОБЩАЯ ХАРАКТЕРИСТИКА ЛЕКАРСТВЕННОГО ПРЕПАРАТА Пирогенал раствор для внутримышечного введения</li>
+        </ol>
+
+        <p class="p-scheme__note">
+          Размещенные на настоящем сайте материалы носят информационный характер и не являются рекламой производителя
+          и выпускаемых им лекарственных препаратов. Информация, представленная на сайте, предназначена для просмотра
+          только совершеннолетними лицами. В случае возникновения нежелательных явлений на фоне приема препарата или
+          претензий по его качеству просьба сообщить в ФГБУ «НИЦЭМ им. Н.Ф. Гамалеи» Минздрава России (филиал «Медгамал»
+          ФГБУ «НИЦЭМ им. Н.Ф. Гамалеи» Минздрава России).
+        </p>
       </div>
     </div>
   </section>
 
+  <!-- общий блок "где купить" как на остальных страницах -->
   <div id="buy-block"></div>
 </main>
 
 <div id="footer-block"></div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav');
-    if (burger && nav) {
-      burger.addEventListener('click', () => nav.classList.toggle('show'));
-    }
-  });
-</script>
 </body>
 </html>

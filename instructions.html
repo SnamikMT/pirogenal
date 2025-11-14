@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Пирогенал — Инструкции</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/docs.css">
+  <link rel="stylesheet" href="./css/footer.css">
+  <script defer src="./main.js"></script>
+</head>
+<body>
+  <div id="header-block"></div>
+
+  <nav class="breadcrumbs">
+  <div class="container">
+    <a href="index.html">Главная</a>
+    <span>Инструкции</span>
+  </div>
+</nav>
+
+
+  <main>
+    <section class="docs-hero">
+      <div class="container">
+        <h1 class="docs-title">Инструкции</h1>
+        <p class="docs-sub">Официальная информация по применению</p>
+      </div>
+    </section>
+
+    <section class="docs-section">
+      <div class="container">
+        <article class="doc-card">
+          <h2 class="doc-card__title">Пирогенал — раствор для инъекций</h2>
+          <div class="doc-card__content" id="inj-content">
+            <!-- сюда грузим html/текст из файла -->
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-block"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const inj = document.getElementById('inj-content');
+      if (inj) {
+        fetch('content/instructions-inj.html')
+          .then(r => r.text())
+          .then(html => inj.innerHTML = html)
+          .catch(() => inj.innerHTML = '<p>Не удалось загрузить инструкцию. Проверьте файл content/instructions-inj.html</p>');
+      }
+    });
+  </script>
+</body>
+</html>

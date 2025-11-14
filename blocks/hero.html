@@ -2,7 +2,9 @@
   <div class="container hero__shell">
     <!-- слева -->
     <div class="hero__left">
-      <h1 class="hero__title">Пирогенал — контроль воспаления и&nbsp;восстановление тканей</h1>
+      <h1 class="hero__title">
+        Пирогенал — контроль воспаления и&nbsp;восстановление тканей
+      </h1>
       <div class="hero__underline"></div>
       <p class="hero__subtitle">
         Доказанное противовоспалительное, регенеративное и противоспаечное действие.
@@ -14,24 +16,45 @@
       </div>
     </div>
 
-    <!-- справа: просто большая картинка + дозировки -->
     <div class="hero__right">
-      <img src="img/preparat.png" alt="Пирогенал" class="hero__product">
-      <div class="hero-doses">
-        <div class="hero-doses__item hero-doses__item--active">
-          <span class="hero-doses__val">10</span><span class="hero-doses__unit">мкг</span>
-        </div>
-        <div class="hero-doses__item">
-          <span class="hero-doses__val">25</span><span class="hero-doses__unit">мкг</span>
-        </div>
-        <div class="hero-doses__item">
-          <span class="hero-doses__val">50</span><span class="hero-doses__unit">мкг</span>
-        </div>
-        <div class="hero-doses__item">
-          <span class="hero-doses__val">100</span><span class="hero-doses__unit">мкг</span>
-        </div>
+  <div class="hero-toggle">
+    <button class="hero-toggle__btn active" data-form="supp">Свечи</button>
+    <button class="hero-toggle__btn" data-form="inj">Инъекции</button>
+  </div>
+
+  <!-- ряд: картинка слева + дозы справа -->
+  <div class="hero__visual-row">
+    <div class="hero__img-wrap">
+      <img
+        src="img/pirogenal-supp.png"
+        alt="Пирогенал суппозитории"
+        class="hero__product hero__product--supp active"
+      >
+      <img
+        src="img/preparat.png"
+        alt="Пирогенал инъекции"
+        class="hero__product hero__product--inj"
+      >
+    </div>
+
+    <!-- колонка дозировок справа -->
+    <div class="hero-doses hero-doses--right">
+      <div class="hero-doses__item hero-doses__item--active">
+        <span class="hero-doses__val">10</span><span class="hero-doses__unit">мкг</span>
+      </div>
+      <div class="hero-doses__item">
+        <span class="hero-doses__val">25</span><span class="hero-doses__unit">мкг</span>
+      </div>
+      <div class="hero-doses__item">
+        <span class="hero-doses__val">50</span><span class="hero-doses__unit">мкг</span>
+      </div>
+      <div class="hero-doses__item">
+        <span class="hero-doses__val">100</span><span class="hero-doses__unit">мкг</span>
       </div>
     </div>
+  </div>
+</div>
+
   </div>
 
   <div class="container hero__buy" id="buy">

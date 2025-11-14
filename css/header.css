@@ -1,3 +1,7 @@
+/* ===========================
+   HEADER
+   =========================== */
+
 .site-header {
   position: sticky;
   top: 0;
@@ -7,58 +11,77 @@
   box-shadow: 0 16px 50px rgba(0,0,0,.12);
 }
 
+/* на случай, если где-то используешь модификатор */
+.site-header--dark {
+  /* можем оставить пустым или добавить отличия позже */
+}
+
+/* .container — из base.css, трогать не надо */
 .header-inner {
-  min-height: 118px;
+  min-height: clamp(88px, 8.2vw, 118px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2.5rem;
+  gap: clamp(1rem, 3vw, 2.5rem);
 }
+
+/* ===========================
+   LOGO
+   =========================== */
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
+  gap: clamp(.7rem, 1.6vw, 1.2rem);
   text-decoration: none;
   color: #fff;
+  flex: 0 0 auto;
+  min-width: 0;
 }
 
-/* простой мягкий красный кружок */
 .logo-mark {
-  width: 62px;
-  height: 62px;
+  width: clamp(42px, 5vw, 62px);
+  height: clamp(42px, 5vw, 62px);
   border-radius: 999px;
-  background: #ff6b6b;                      /* мягкий красный */
+  background: #ff6b6b;
   box-shadow: 0 12px 28px rgba(255, 107, 107, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-
 .logo-text {
   display: flex;
   flex-direction: column;
-  font-size: 1.25rem;
-  font-weight: 800;
   line-height: 1.05;
+  font-weight: 800;
+  font-size: clamp(1rem, 1.3vw, 1.25rem);
 }
+
 .logo-text small {
-  font-size: .78rem;
+  font-size: clamp(.68rem, .9vw, .78rem);
   color: rgba(255,255,255,.65);
   font-weight: 600;
 }
 
+/* ===========================
+   NAV (desktop)
+   =========================== */
+
 .nav {
   display: flex;
-  gap: 1.9rem;
   align-items: center;
+  gap: clamp(.8rem, 1.4vw, 1.6rem);
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 .nav a {
   text-decoration: none;
   color: rgba(255,255,255,.82);
   font-weight: 700;
-  font-size: 1.05rem;
-  transition: .1s ease;
+  font-size: clamp(.9rem, 1.02vw, 1.02rem);
+  white-space: nowrap;
+  transition: color .12s ease;
 }
 
 .nav a.active,
@@ -66,20 +89,29 @@
   color: #fff;
 }
 
-/* КНОПКА */
+/* "Главная" только для мобилки, на десктопе прячем */
+.nav a[data-nav="home"] {
+  display: none;
+}
+
+/* ===========================
+   CTA
+   =========================== */
+
 .header-btn {
   display: inline-flex;
   align-items: center;
-  background: rgba(255,255,255,0.95);       /* не чисто белый, а чуть молочный */
+  background: rgba(255,255,255,0.95);
   color: #0F615F !important;
-  padding: 1.05rem 2.35rem;                 /* больше */
+  padding: clamp(.65rem, 1.05vw, .9rem) clamp(1.1rem, 2vw, 1.9rem);
   border-radius: 999px;
-  font-weight: 700;
-  font-size: 1.05rem;                       /* больше текст */
+  font-weight: 800;
+  font-size: clamp(.95rem, 1.05vw, 1.02rem);
   box-shadow: 0 14px 28px rgba(0,0,0,.15);
   border: 1.5px solid rgba(255,255,255,0.28);
   backdrop-filter: blur(4px);
-  gap: .4rem;
+  gap: .35rem;
+  flex: 0 0 auto;
 }
 
 .header-btn:hover {
@@ -87,38 +119,119 @@
   box-shadow: 0 16px 32px rgba(0,0,0,.18);
 }
 
-/* бургер */
+/* ===========================
+   BURGER
+   =========================== */
+
 .burger {
   display: none;
+  width: 34px;
+  height: 26px;
   background: transparent;
   border: none;
+  position: relative;
+  padding: 0;
+  cursor: pointer;
 }
 
-@media (max-width: 980px) {
+/* три полоски */
+.burger::before,
+.burger::after,
+.burger span {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.burger span {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.burger::before {
+  top: 4px;
+}
+
+.burger::after {
+  bottom: 4px;
+}
+
+/* ===========================
+   TWEAKS: middle screens
+   =========================== */
+
+@media (max-width: 1240px) {
   .nav {
-    display: none;
-    position: absolute;
-    top: 118px;
-    right: 1rem;
-    background: rgba(16,24,40,.98);
-    border-radius: 18px;
-    flex-direction: column;
-    min-width: 230px;
-    overflow: hidden;
+    gap: .9rem;
   }
-  .nav.show { display: flex; }
+  .header-btn {
+    padding: .7rem 1.4rem;
+  }
+}
+
+/* ===========================
+   MOBILE MENU (drop-down)
+   =========================== */
+
+@media (max-width: 980px) {
+  .header-inner {
+    min-height: 80px;
+    position: relative; /* якорь для абсолютного меню */
+  }
+
+  /* показываем бургер */
+  .burger {
+    display: block;
+  }
+
+  /* мобильное меню: выпадает под шапкой, не отрывается */
+  .nav {
+    position: absolute;
+    top: 100%;          /* сразу под .header-inner */
+    left: 0;
+    right: 0;
+    background: rgba(16,24,40,0.98);
+    backdrop-filter: blur(4px);
+    padding: 0.5rem 0.75rem 0.8rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.2rem;
+    display: none;      /* по умолчанию спрятано */
+    border-radius: 0 0 18px 18px;
+    z-index: 99;
+  }
+
+  .nav.show {
+    display: flex;
+  }
+
   .nav a,
   .nav .header-btn {
     width: 100%;
-    padding: 1rem 1.1rem;
+    padding: 0.8rem 1rem;
     justify-content: flex-start;
+    font-size: 1rem;
   }
-  .burger {
+
+  /* в мобильном меню показываем "Главная" */
+  .nav a[data-nav="home"] {
     display: block;
-    width: 30px;
-    height: 24px;
   }
-  .header-inner {
-    min-height: 100px;
+}
+
+/* ===========================
+   Extra small
+   =========================== */
+
+@media (max-width: 420px) {
+  .logo-text {
+    font-size: 1rem;
+  }
+  .logo-text small {
+    font-size: .7rem;
   }
 }

@@ -2,16 +2,86 @@ document.addEventListener('DOMContentLoaded', () => {
   // бургер
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav');
+
   if (burger && nav) {
-    burger.addEventListener('click', () => nav.classList.toggle('show'));
+    burger.addEventListener('click', () => {
+      nav.classList.toggle('show');
+    });
   }
 
-  // ===== HERO (только если есть #hero-block) =====
+  // --- плавный скролл к якорям с учётом шапки --- //
+
+function smoothScrollToHash(hash) {
+  if (!hash) return;
+
+  const target = document.querySelector(hash);
+  if (!target) return;
+
+  const header = document.querySelector('.site-header');
+  const headerOffset = header ? header.offsetHeight : 0;
+
+  const targetY = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+
+  window.scrollTo({
+    top: targetY,
+    behavior: 'smooth'
+  });
+}
+
+// Клик по ссылкам с якорями: href="#faq" или href="/#faq"
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="#"], a[href^="/#"]');
+  if (!link) return;
+
+  const url = new URL(link.href, window.location.origin);
+
+  // Если переход на эту же страницу — перехватываем и скроллим сами
+  if (url.pathname === window.location.pathname) {
+    e.preventDefault();
+    smoothScrollToHash(url.hash);
+
+    // Закрываем мобильное меню, если открыто
+    const nav = document.querySelector('.nav');
+    if (nav && nav.classList.contains('show')) {
+      nav.classList.remove('show');
+    }
+  }
+  // Если это переход на другую страницу (например, с /product/supp/ на /#faq),
+  // ничего не трогаем — браузер сам перейдёт на /#faq, а дальше сработает код ниже (onload).
+});
+
+// После загрузки страницы проверяем, есть ли хэш — и доскролливаем красиво
+window.addEventListener('load', () => {
+  if (window.location.hash) {
+    // небольшой timeout, чтобы всё успело отрисоваться
+    setTimeout(() => {
+      smoothScrollToHash(window.location.hash);
+    }, 50);
+  }
+});
+
+    // ===== HEADER =====
+  const headerContainer = document.getElementById('header-block');
+  if (headerContainer) {
+    fetch('/blocks/header.html')
+      .then(r => r.text())
+      .then(html => {
+        headerContainer.innerHTML = html;
+        initHeaderActive();   // подсветка активного меню
+        initBurger();         // бургер после вставки
+      })
+      .catch(err => console.warn('Не удалось загрузить header:', err));
+  }
+
+ // ===== HERO =====
   const heroContainer = document.getElementById('hero-block');
   if (heroContainer) {
     fetch('blocks/hero.html')
       .then(r => r.text())
-      .then(html => heroContainer.innerHTML = html)
+      .then(html => {
+        heroContainer.innerHTML = html;
+        initHero(); // <— навешиваем обработчики ПОСЛЕ вставки разметки
+      })
       .catch(err => console.warn('Не удалось загрузить hero:', err));
   }
 
@@ -64,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== BUY =====
   const buyContainer = document.getElementById('buy-block');
   if (buyContainer) {
-    fetch('blocks/buy.html')
+    fetch('/blocks/buy.html')
       .then(r => r.text())
       .then(html => {
         buyContainer.innerHTML = html;
@@ -75,12 +145,39 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== FOOTER =====
   const footerContainer = document.getElementById('footer-block');
   if (footerContainer) {
-    fetch('blocks/footer.html')
+    fetch('/blocks/footer.html')
       .then(r => r.text())
       .then(html => {
         footerContainer.innerHTML = html;
       })
       .catch(err => console.warn('Не удалось загрузить footer:', err));
+  }
+
+  function initBurger() {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => nav.classList.toggle('show'));
+    }
+  }
+
+  function initHeaderActive() {
+    const path = location.pathname.split('/').pop() || 'index.html';
+    const map = {
+      'index.html': 'home',
+      'product-supp.html': 'product',
+      'product-10.html': 'product',
+      'product-25.html': 'product',
+      'product-50.html': 'product',
+      'product-100.html': 'product',
+      'instructions.html': 'instructions',
+      'materials.html': 'materials'
+    };
+    const key = map[path] || (path.includes('index') ? 'home' : null);
+    if (!key) return;
+    document.querySelectorAll('.nav a').forEach(a => {
+      a.classList.toggle('active', a.dataset.nav === key);
+    });
   }
 
   // ====== функции ======
@@ -130,5 +227,57 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = btn.closest('.faq-item');
       item.classList.toggle('open');
     });
+  }
+
+  function initHero() {
+    const buttons = document.querySelectorAll('.hero-toggle__btn');
+    const imgs = document.querySelectorAll('.hero__product');
+
+    if (!buttons.length || !imgs.length) return;
+
+    let currentIdx = 0;
+    let autoSwitch;
+
+    const formClasses = Array.from(imgs).map(img => {
+      // ожидаем классы вида hero__product--supp / --inj
+      const cls = Array.from(img.classList).find(c => c.startsWith('hero__product--'));
+      return cls ? cls.replace('hero__product--', '') : null;
+    });
+
+    function switchForm(form) {
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.form === form));
+      imgs.forEach(img => img.classList.toggle('active', img.classList.contains(`hero__product--${form}`)));
+
+      // опционально: гоняем активную дозу по кругу
+      const doses = document.querySelectorAll('.hero-doses__item');
+      if (doses.length) {
+        doses.forEach(d => d.classList.remove('hero-doses__item--active'));
+        // подсветим первую для консистентности
+        doses[0].classList.add('hero-doses__item--active');
+      }
+    }
+
+    buttons.forEach((btn, idx) => {
+      btn.addEventListener('click', () => {
+        clearInterval(autoSwitch);
+        currentIdx = idx;
+        switchForm(btn.dataset.form);
+        startAuto();
+      });
+    });
+
+    function startAuto() {
+      clearInterval(autoSwitch);
+      autoSwitch = setInterval(() => {
+        currentIdx = (currentIdx + 1) % buttons.length;
+        const nextForm = buttons[currentIdx].dataset.form;
+        switchForm(nextForm);
+      }, 5000);
+    }
+
+    // дефолт — свечи
+    const defaultForm = buttons[0]?.dataset.form || 'supp';
+    switchForm(defaultForm);
+    startAuto();
   }
 });

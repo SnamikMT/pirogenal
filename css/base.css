@@ -7,6 +7,11 @@
   --radius: 22px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 body {
   margin: 0;
   background: var(--page-bg);
@@ -17,6 +22,9 @@ body {
   font-weight: 600;
 }
 
+body.menu-open {
+  overflow: hidden;
+}
 
 *,
 *::before,
